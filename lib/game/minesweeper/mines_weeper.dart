@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vibrate/vibrate.dart';
 import 'dart:math';
 
-import 'package:flutter_game/board_square.dart';
-import 'package:flutter_game/cust_item.dart';
+import 'package:flutter_game/game/minesweeper/board_square.dart';
+import 'package:flutter_game/game/minesweeper/cust_item.dart';
 
 class Minesweeper extends StatefulWidget {
   @override
@@ -53,7 +53,7 @@ class _MinesweeperState extends State<Minesweeper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Welcome"),),
+      appBar: AppBar(title: Text("Welcome to mines weeper"),),
       body: GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -83,6 +83,24 @@ class _MinesweeperState extends State<Minesweeper> {
           return GestureDetector(
             child: Card(
               color: Colors.grey,
+              shape: Border(
+                  top:BorderSide(
+                    color: Colors.grey,
+                    width: 5.0,
+                  ),
+                  bottom: BorderSide(
+                    color: Colors.grey,
+                    width: 5.0,
+                  ),
+                  left: BorderSide(
+                    color: Colors.grey,
+                    width: 5.0,
+                  ),
+                  right: BorderSide(
+                    color: Colors.grey,
+                    width: 5.0,
+                  ),
+              ),
               child: Center(
                 child: item,
               ),
