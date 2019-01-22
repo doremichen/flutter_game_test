@@ -69,6 +69,7 @@ class _SuitCardDeckState extends State<SuitCardDeck> {
               );
         },
         onWillAccept: (value) {
+          print("onWillAccept@SuitCardDeck");
           PlayingCard cardAdded = value["cards"].last;
           // check card suit
           if (cardAdded.cardSuit == widget.cardSuit) {
@@ -81,6 +82,7 @@ class _SuitCardDeckState extends State<SuitCardDeck> {
           return false;
         },
       onAccept: (value) {
+        print("onAccept@SuitCardDeck");
           widget.onCardAdded(
             value["cards"],
             value["fromIndex"],

@@ -57,7 +57,7 @@ class _CardColumnState extends State<CardColumn> {
           print("onWillAccept +++");
           // If empty, accept
           if (widget.cards.length == 0) {
-//            print("111111111111111111111");
+            print("111111111111111111111");
             return true;
           }
 
@@ -66,16 +66,16 @@ class _CardColumnState extends State<CardColumn> {
           PlayingCard firstCard = draggedCards.first;
           // red card
           if (firstCard.cardColor == Colors.red) {
-            // If the last card is red, NOt accept
+            // If the last card is red, Not accept
             if (widget.cards.last.cardColor == Colors.red) {
-//              print("222222222222222222222222222222222");
+              print("222222222222222222222222222222222");
               return false;
             }
 
           } else {
             // If the last card is black, Not accept
             if (widget.cards.last.cardColor == Colors.black) {
-//              print("3333333333333333333333333333333333");
+              print("3333333333333333333333333333333333");
               return false;
             }
 
@@ -85,7 +85,7 @@ class _CardColumnState extends State<CardColumn> {
           int firstDraggedCardIndex = CardType.values.indexOf(firstCard.cardType);
           // Check equal
           if (lastColumnCardIndex != firstDraggedCardIndex + 1) {
-//            print("4444444444444444444444444444444444444");
+            print("4444444444444444444444444444444444444");
             return false;
           }
 

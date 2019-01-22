@@ -154,6 +154,13 @@ class _SolitaireState extends State<Solitaire> {
     super.initState();
 
     // initial 52 cards
+    _initialCards();
+
+  }
+
+  void _initialCards() {
+
+    // initial 52 cards
     CardSuit.values.forEach((suit) {
       CardType.values.forEach((type) {
         allCards.add(PlayingCard(
@@ -166,7 +173,6 @@ class _SolitaireState extends State<Solitaire> {
     });
 
     _buildCardColumn();
-
   }
 
   //
@@ -386,6 +392,7 @@ class _SolitaireState extends State<Solitaire> {
         finalDiamondsDeck.length +
         finalHeartsDeck.length == 52) {
       // show win
+      _showWinDialog();
     }
 
     List<PlayingCard> fromColumn = cardColumnMap[index];
@@ -396,6 +403,27 @@ class _SolitaireState extends State<Solitaire> {
             ..faceUp = true;
       }
     });
+  }
+
+  _showWinDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Congradulation"),
+            content: Text("You win!!!!"),
+            actions: <Widget>[
+                RaisedButton(
+                  child: Text("Play again"),
+                  onPressed: () {
+                    _initialCards();
+                    Navigator.pop(context);
+                  },
+                )
+            ],
+          );
+        },
+    );
   }
 
 }
