@@ -19,8 +19,8 @@ class _CustItem extends State<CustItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
-      width: double.infinity,
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       color: widget.backGroundColor,
       child: Center(
         child: Text(widget.info),

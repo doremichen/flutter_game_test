@@ -16,11 +16,6 @@ class Minesweeper extends StatefulWidget {
 class _MinesweeperState extends State<Minesweeper> {
 
   bool _canVibrate = true;
-//  final Iterable<Duration> pauses = [
-//    const Duration(milliseconds: 500),
-//    const Duration(milliseconds: 1000),
-//    const Duration(milliseconds: 500),
-//  ];
 
   int rowCount = 10;
   int columnCount = 10;
@@ -37,10 +32,7 @@ class _MinesweeperState extends State<Minesweeper> {
   // A flagged square is a square a user has added a flag on by long pressing
   List<bool> flaggedSquares;
 
-
   int sqauresLeft = 0;
-
-  Card card = null;
 
   @override
   void initState() {
@@ -60,14 +52,14 @@ class _MinesweeperState extends State<Minesweeper> {
           crossAxisCount: columnCount,
         ),
         itemBuilder: (context, position) {
-          int rowNumber = (position/columnCount).floor();
-          int colmunNumber = (position%columnCount);
+          int rowNumber = position ~/ columnCount;
+          int colmunNumber = position % columnCount;
 
           CustItem item;
 
           if (openedSquares[position] == false) {
             if (flaggedSquares[position] == true) {
-              item = CustItem(backGroundColor: Colors.yellow, info: "O",);
+              item = CustItem(backGroundColor: Colors.yellow, info: "F",);
             } else {
               item = CustItem(backGroundColor: Colors.grey, info: "X",);
             }
@@ -83,33 +75,14 @@ class _MinesweeperState extends State<Minesweeper> {
           return GestureDetector(
             child: Card(
               color: Colors.grey,
-              shape: Border(
-                  top:BorderSide(
-                    color: Colors.grey,
-                    width: 5.0,
-                  ),
-                  bottom: BorderSide(
-                    color: Colors.grey,
-                    width: 5.0,
-                  ),
-                  left: BorderSide(
-                    color: Colors.grey,
-                    width: 5.0,
-                  ),
-                  right: BorderSide(
-                    color: Colors.grey,
-                    width: 5.0,
-                  ),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.grey, width: 5.0),
               ),
               child: Center(
                 child: item,
               ),
             ),
             onTap: () {
-
-              print("bombCount: $bombCount");
-              print("sqauresLeft: $sqauresLeft");
-
               if (board[rowNumber][colmunNumber].hasBomb) {
                 _handleGameOver(context);
 
@@ -156,9 +129,6 @@ class _MinesweeperState extends State<Minesweeper> {
     bool canVibrate = await Vibrate.canVibrate;
     setState(() {
       _canVibrate = canVibrate;
-//      _canVibrate
-//          ? print("This device can vibrate")
-//          : print("This device cannot vibrate");
     });
   }
 
@@ -176,10 +146,12 @@ class _MinesweeperState extends State<Minesweeper> {
     // record squareLeft
     sqauresLeft = rowCount*columnCount;
 
+    // initial openSquares
     openedSquares = List.generate(rowCount*columnCount, (i) {
       return false;
     });
 
+    // initial flaggedSquares
     flaggedSquares = List.generate(rowCount*columnCount, (i) {
       return false;
     });
@@ -204,7 +176,6 @@ class _MinesweeperState extends State<Minesweeper> {
         // less than bombProbability get bomb
         if (randomInteger < bombProbability) {
           board[i][j].hasBomb = true;
-
           // count bomb
           bombCount++;
         }
