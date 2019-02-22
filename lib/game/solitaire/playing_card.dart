@@ -82,6 +82,8 @@ class PlayingCard {
           return "Q";
         case CardType.king:
           return "K";
+        default:
+            return "";
       }
    }
 
@@ -95,6 +97,8 @@ class PlayingCard {
           return "C";
         case CardSuit.spades:
           return "S";
+        default:
+          return "";
       }
    }
 
